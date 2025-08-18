@@ -1,9 +1,11 @@
+import sys
+
 n, k = map(int, input().split())
 arr = list(map(int, input().split()))
 
 # Please write your code here.
 
-ans = n
+ans = sys.maxsize
 for i in arr:
     idxs = []
     isbool = True
@@ -20,6 +22,6 @@ for i in arr:
             break
     
     if isbool:
-        ans = i
+        ans = min(ans, i)
 
 print(ans)
