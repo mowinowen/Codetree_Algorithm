@@ -4,14 +4,11 @@ arr = [int(input()) for _ in range(N)]
 # Please write your code here.
 arr.sort()
 
-# print(arr)
 ans = 0
+j = 0
 for i in range(N):
-    for j in range(i + 1, N):
-        if arr[j] - arr[i] > K:
-            ans = max(ans, j - i)
-            break
-if ans == 0:
-    print(len(arr))
-else:
-    print(ans)
+    while j < N and arr[j] - arr[i] <= K:
+        j += 1
+    ans = max(ans, j - i)
+
+print(ans)
