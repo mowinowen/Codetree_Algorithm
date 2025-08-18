@@ -12,7 +12,7 @@ for i in arr:
             idxs.append(j)
     
     # print(idxs)
-    if len(idxs) == 1:
+    if idxs[0] != 0 or idxs[-1] != n - 1:
         continue
     for j in range(1, len(idxs)):
         if idxs[j] - idxs[j - 1] > k:
