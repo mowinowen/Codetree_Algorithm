@@ -6,7 +6,7 @@ a = list(map(int, input().split()))
 # Please write your code here.
 a.sort()
 ans = 0
-for i in range(1, 10):
+for i in range(1, 101):
     # print(i, N - bisect_left(a, i))
     if N - bisect_left(a, i) < i:
         cnt = 0
