@@ -8,9 +8,13 @@ for i in range(m):
     if i + 1 >= p:
         if c in people:
             people.remove(c)
-    if i + 1 == p:
-        if info[i - 1][1] == u:
-            people.remove(info[i - 1][0])
+
+if info[p - 2][1] == info[p - 1][1]:
+    if info[p - 2][0] in people:
+        people.remove(info[p - 2][0])
+
+if info[p - 1][1] == '0':
+    people = []
 
 for c in sorted(list(people)):
     print(c, end= ' ')
