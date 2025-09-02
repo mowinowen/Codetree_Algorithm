@@ -1,5 +1,3 @@
-import bisect
-
 N = int(input())
 seats = list(input())
 
@@ -18,6 +16,6 @@ for i in range(1, N - 1):
             curr = min(seated[j] - seated[j - 1], curr)
         seats[i] = '0'
     
-    ans = max(curr, ans)
+        ans = max(curr, ans)
 
 print(ans)
