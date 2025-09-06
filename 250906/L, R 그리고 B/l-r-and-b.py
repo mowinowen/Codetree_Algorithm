@@ -11,10 +11,16 @@ for i in range(10):
             lx, ly = i, j
 
 if by == ry == ly:
-    print(abs(lx - bx) + 1)
+    if lx < rx < bx or bx < rx < lx:
+        print(abs(lx - bx) + 1)
+    else:
+        print(abs(lx - bx) - 1)
 
 elif bx == rx == lx:
-    print(abs(ly - by) + 1)
+    if ly < ry < by or by < ry < ly:
+        print(abs(ly - by) + 1)
+    else:
+        print(abs(ly - by) - 1)
 
 else:
     print(abs(lx - bx) + abs(ly - by) - 1)
