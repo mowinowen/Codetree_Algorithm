@@ -1,6 +1,6 @@
 n = int(input())
 a, b, c = 0, 0, 0
-curr = ''
+curr = 'ABC'
 ans = 0
 
 for _ in range(n):
