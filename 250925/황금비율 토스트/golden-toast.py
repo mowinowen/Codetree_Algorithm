@@ -80,13 +80,16 @@ for _ in range(m):
         l.insert(it, command[1])
     else:
         if command[0] == 'L':
-            it = it.prev
+            if it != l.begin():
+                it = it.prev
             
         elif command[0] == 'R':
-            it = it.next
+            if it != l.end():
+                it = it.next
             
         else:
-            it = l.erase(it)
+            if it != l.end():
+                it = l.erase(it)
             
 
 it = l.begin()
