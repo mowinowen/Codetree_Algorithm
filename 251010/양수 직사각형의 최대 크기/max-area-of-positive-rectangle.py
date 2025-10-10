@@ -1,6 +1,6 @@
 n, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
-ans = 0
+ans = -1
 # Please write your code here.
 for i in range(n):
     for j in range(m):
