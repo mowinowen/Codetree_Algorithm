@@ -31,7 +31,7 @@ while pq:
             heapq.heappush(pq, (new_dist, i))
 
 for i in range(1, n + 1):
-    if dist[i] =='inf':
+    if dist[i] == float('inf'):
         print(-1)
     else:
         print(dist[i])
