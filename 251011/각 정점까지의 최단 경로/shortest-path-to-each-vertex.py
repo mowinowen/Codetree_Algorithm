@@ -13,6 +13,7 @@ dist = [float('inf')] * (n + 1)
 for i in range(m):
     x, y, z = edges[i]
     graph[x].append((y, z))
+    graph[y].append((x, z))    
 
 dist[k] = 0
 
@@ -29,4 +30,5 @@ while pq:
             dist[i] = new_dist
             heapq.heappush(pq, (new_dist, i))
 
-print(dist)
+for i in range(1, n + 1):
+    print(dist[i])
