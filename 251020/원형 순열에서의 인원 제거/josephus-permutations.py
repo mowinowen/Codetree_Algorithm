@@ -8,8 +8,6 @@ d = deque(i for i in range(1, n + 1))
 
 while len(d) != 0:
     for i in range(k - 1):
-        front = d.popleft()
-        d.append(front)
+        d.append(d.popleft())
 
-    print(d[0], end= ' ')
-    d.popleft()
+    print(d.popleft(), end= ' ')
