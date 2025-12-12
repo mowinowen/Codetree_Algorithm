@@ -16,8 +16,8 @@ def check_positive_rectangle(x1, y1, x2, y2):
 ans = -1
 for x1 in range(n):
     for y1 in range(m):
-        for x2 in range(x1 + 1, n):
-            for y2 in range(y1 + 1, m):
+        for x2 in range(x1, n):
+            for y2 in range(y1, m):
                 ans = max(ans, check_positive_rectangle(x1, y1, x2, y2))
 
 print(ans)
