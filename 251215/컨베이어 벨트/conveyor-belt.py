@@ -6,13 +6,10 @@ u = list(map(int, input().split()))
 d = list(map(int, input().split()))
 
 # Please write your code here.
-for _ in range(t):
-    temp1, temp2 = u[n - 1], d[n - 1]
-    for i in range(n - 2, -1, -1):
-        u[i + 1] = u[i]
-        d[i + 1] = d[i]
-    
-    d[0], u[0] = temp1, temp2
+full = u + d
+t %= 2 * n
 
-print(*u)
-print(*d)
+full = full[-t:] + full[:-t]
+
+print(*full[:n])
+print(*full[n:])
