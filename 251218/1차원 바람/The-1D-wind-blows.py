@@ -1,7 +1,7 @@
 from collections import deque
 
 n, m, q = map(int, input().split())
-a = [[0] * m] + [list(map(int, input().split())) for _ in range(n)] + [[0] * m]
+a = [[-1] * m] + [list(map(int, input().split())) for _ in range(n)] + [[-1] * m]
 # winds = [(int(r), d) for r, d in [input().split() for _ in range(q)]]
 
 # Please write your code here.
