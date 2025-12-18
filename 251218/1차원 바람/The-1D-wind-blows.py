@@ -1,52 +1,32 @@
-from collections import deque
+import sys
+input = sys.stdin.readline
 
 n, m, q = map(int, input().split())
-a = [[-1] * m] + [list(map(int, input().split())) for _ in range(n)] + [[-1] * m]
-# winds = [(int(r), d) for r, d in [input().split() for _ in range(q)]]
+a = [[-1] * m] + [list(map(int, input().split())) for _ in range(n)]
 
 # Please write your code here.
+def shift(d, r):
+    if d == 'L':
+        a[r] = a[r][-1:] + a[r][:-1]
+    else:
+        a[r] = a[r][1:] + a[r][:1]
 
 for _ in range(q):
     r, d = input().split()
     r = int(r)
-    s = set()
-    dq = deque()
+    shift(d, r)
 
-    while True:
-        # print(r, d)
-        if d == 'L':
-            a[r] = a[r][-1:] + a[r][:-1]
-        
-        else:
-            a[r] = a[r][1:] + a[r][:1]
+    curr_r, curr_d = r, d
+    while curr_r > 1 and any(a[curr_r][i] == a[curr_r - 1][i] for i in range(m)):
+        curr_r -= 1
+        curr_d = 'R' if curr_d == 'L' else 'L'
+        shift(curr_d, curr_r)
 
-        # for row in a[1:-1]:
-        #     print(*row)
-        
-        s.add(r)
-        
-        flag1 = False
-        if r - 1 not in s:
-            for i in range(m):
-                if a[r][i] == a[r - 1][i]:
-                    flag1 = True
-        
-        if flag1:
-            dq.append((r - 1, 'R' if d == 'L' else 'L'))
+    curr_r, curr_d = r, d
+    while curr_r < n and any(a[curr_r][i] == a[curr_r + 1][i] for i in range(m)):
+        curr_r += 1
+        curr_d = 'R' if curr_d == 'L' else 'L'
+        shift(curr_d, curr_r)
 
-        flag2 = False
-        if r + 1 not in s:
-            for i in range(m):
-                if a[r][i] == a[r + 1][i]:
-                    flag2 = True
-        
-        if flag2:
-            dq.append((r + 1, 'R' if d == 'L' else 'L'))
-
-        if len(dq) == 0:
-            break
-
-        r, d = dq.popleft()
-
-for row in a[1:-1]:
+for row in a[1:]:
     print(*row)
