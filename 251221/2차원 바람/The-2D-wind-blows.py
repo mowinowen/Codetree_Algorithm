@@ -12,6 +12,9 @@ def in_range(x, y):
     return 0 < x < n + 1 and 0 < y < m + 1
 
 b = [[-1] * (m + 1) for _ in range(n + 1)]
+for i in range(1, n + 1):
+    for j in range(1, m + 1):
+        b[i][j] = a[i][j]
 
 for r1, c1, r2, c2 in winds:
     tmp = a[r1][c2]
@@ -60,22 +63,3 @@ for r1, c1, r2, c2 in winds:
 
 for row in b[1:]:
     print(*row[1:])
-
-'''
-3 1 3
-2 2 1
-3 3 3
-
-2 2 3
-2 1 1
-3 3 3
-
-2 2 3
-2 3 1 
-3 3 1
-
-2 2 3
-2 2 2
-3 2 1
-
-'''
