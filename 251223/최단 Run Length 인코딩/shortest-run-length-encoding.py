@@ -1,20 +1,16 @@
 import sys
+from itertools import groupby
 input = sys.stdin.readline
 
 A = input().strip()
 
 # Please write your code here.
 ans = float('inf')
-for _ in range(len(A)):
-    A = A[-1] + A[:-1]
-    encoding = ''
+A += A
 
-    cnt = 0
-    for i in range(1, len(A)):
-        if A[i] != A[i - 1]:
-            encoding += A[i - 1] + str(i - cnt)
-            cnt = i
-    encoding += A[-1] + str(len(A) - cnt)
-    ans = min(ans, len(encoding))
+for i in range(len(A) // 2):
+    string = A[i : i + len(A) // 2]
+    cnt = sum(len(str(len(list(b)))) + 1 for a, b in groupby(string))
+    ans = min(ans, cnt)
 
 print(ans)
