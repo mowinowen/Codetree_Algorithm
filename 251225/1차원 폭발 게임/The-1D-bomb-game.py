@@ -4,24 +4,27 @@ n, m = map(int, input().split())
 numbers = [int(input()) for _ in range(n)]
 
 # Please write your code here.
-while True:
-    isbool = False
+cnt = 1
+
+while len(numbers) >= m:
     new_numbers = []
-
-    for num, group in groupby(numbers):
-        g_list = list(group)
-
-        if len(g_list) >= m:
-            isbool = True
-
+    curr_num = numbers[0]
+    max_cnt = 0
+    for num in numbers[1:]:
+        if num == curr_num:
+            cnt += 1
         else:
-            new_numbers += g_list
-    
+            if cnt < m:
+                new_numbers += [curr_num] * cnt
+            max_cnt = max(cnt, max_cnt)
+            cnt = 1
+            curr_num = num
+    if cnt < m:
+        new_numbers += [curr_num] * cnt
+    max_cnt = max(cnt, max_cnt)
     numbers = new_numbers
-    if not isbool:
+    if max_cnt < m:
         break
 
 print(len(numbers))
-
-for num in numbers:
-    print(num)
+print(*numbers, sep='\n')
