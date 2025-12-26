@@ -29,11 +29,11 @@ if dir == 'R':
         temp = [num for num in row if num != 0]
         temp = [0] * (4 - len(temp)) + temp
 
-        for i in range(3, -1, -1):
+        for i in range(3, 0, -1):
             if temp[i - 1] == temp[i]:
                 temp[i] *= 2
                 temp[i - 1] = 0
-                temp = [0] + temp[:i - 1] + temp[i:] 
+                temp = [0] + temp[:i - 1] + temp[i:]
         
         new_grid.append(temp)
 
@@ -56,7 +56,7 @@ if dir == 'D':
         temp = [num for num in col if num != 0]
         temp = [0] * (4 - len(temp)) + temp
 
-        for i in range(3, -1, -1):
+        for i in range(3, 0, -1):
             if temp[i - 1] == temp[i]:
                 temp[i] *= 2
                 temp[i - 1] = 0
