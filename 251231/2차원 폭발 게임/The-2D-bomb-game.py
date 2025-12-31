@@ -1,4 +1,7 @@
+import sys
 from itertools import groupby
+
+input = sys.stdin.readline
 
 n, m, k = map(int, input().split())
 numbers_2d = [list(map(int, input().split())) for _ in range(n)]
@@ -14,11 +17,13 @@ def bomb_grid(m):
                 if val == 0:
                     new_col += list(group)
                     continue
-                cnt = len(list(group))
-                if cnt >= m:
-                    zero_cnt += cnt
+                # cnt = len(list(group))
+                group_list = list(group)
+                if len(group_list) >= m:
+                    zero_cnt += len(group_list)
                 else:
-                    new_col.append(val)
+                    # new_col.append(val)
+                    new_col += group_list
             
             if zero_cnt == 0:
                 break
