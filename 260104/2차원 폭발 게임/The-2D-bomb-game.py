@@ -1,5 +1,5 @@
 import sys
-from itertools import groupby
+from itertools import groupby, chain
 
 input = sys.stdin.readline
 
@@ -40,9 +40,10 @@ for num in range(k):
     numbers_2d = list(map(list, zip(*new_grid[::-1])))
     numbers_2d = bomb_grid(n, k)
 
-    # history[tuple(map(tuple, numbers_2d))] = num
-    if tuple(map(tuple, numbers_2d)) in history:
-        time = (k - num) % (num - history[tuple(map(tuple, numbers_2d))])
+    grid_key = tuple(chain.from_iterable(numbers_2d))
+
+    if grid_key in history:
+        time = (k - num) % (num - history[grid_key])
 
         for _ in range(time):
             new_grid = bomb_grid(n, k)
@@ -50,6 +51,6 @@ for num in range(k):
             numbers_2d = bomb_grid(n, k)
         break
     
-    history[tuple(map(tuple, numbers_2d))] = num
+    history[grid_key] = num
     
 print(n ** 2 - sum(row.count(0) for row in numbers_2d))
