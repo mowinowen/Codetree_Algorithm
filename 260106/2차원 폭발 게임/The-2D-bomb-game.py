@@ -45,7 +45,6 @@ for num in range(k):
         time = (k - num) % (num - history[grid_key])
 
         for _ in range(time):
-            new_grid = bomb_grid(n, k)
             numbers_2d = list(map(list, zip(*new_grid[::-1])))
             numbers_2d = bomb_grid(n, k)
         break
