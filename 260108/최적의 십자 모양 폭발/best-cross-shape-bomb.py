@@ -37,13 +37,11 @@ for i in range(n):
         cnt = 0
         for k in range(n):
             for l in range(n):
-                if new_grid[k][l] not in [0, -1]:
+                if new_grid[k][l] != 0:
                     for dx, dy in dirs:
                         if 0 <= k + dx < n and 0 <= l + dy < n and new_grid[k + dx][l + dy] == new_grid[k][l]:
                             cnt += 1
-                            new_grid[k + dx][l + dy] = -1
-                            new_grid[k][l] = -1
         
         ans = max(ans, cnt)
 
-print(ans)
+print(ans // 2)
