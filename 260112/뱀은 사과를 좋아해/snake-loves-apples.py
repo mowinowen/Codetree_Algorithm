@@ -51,3 +51,9 @@ for d, num in moves:
 print(ans)
 
 # Please write your code here.
+
+'''
+0 0 0 0
+0 0 0 0
+
+'''
