@@ -5,20 +5,17 @@ n, m, r, c = map(int, input().split())
 
 # Please write your code here.
 
-grid = [[-1] * n for _ in range(n)]
-grid[r - 1][c - 1] = 0
-ans = 1
+visited = {(r - 1, c - 1)}
 dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
-for i in range(1, m + 1):
-    for x in range(n):
-        for y in range(n):
-            if grid[x][y] != -1 and grid[x][y] != i:
-                for dx, dy in dirs:
-                    nx = x + dx * (2 ** (i - 1))
-                    ny = y + dy * (2 ** (i - 1))
-                    if 0 <= nx < n and 0 <= ny < n and grid[nx][ny] == -1:
-                        grid[nx][ny] = i
-                        ans += 1
+for t in range(1, m + 1):
+    tmp = set()
+    for x, y in visited:
+        for dx, dy in dirs:
+            nx, ny = x + dx * (2 ** (t - 1)), y + dy * (2 ** (t - 1))
+            if 0 <= nx < n and 0 <= ny < n:
+                tmp.add((nx, ny))
+    
+    visited.update(tmp)
 
-print(ans)
+print(len(visited))
