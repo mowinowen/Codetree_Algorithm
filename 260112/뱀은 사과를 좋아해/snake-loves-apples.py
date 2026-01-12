@@ -16,7 +16,7 @@ x, y = 0, 0
 curr_len = 1
 ans = 0
 isend = False
-dq = deque((x, y))
+dq = deque([(x, y)])
 
 for d, num in moves:
     num = int(num)
@@ -27,23 +27,20 @@ for d, num in moves:
             ans += 1
             isend = True
             break
-
-        if (x + dx, y + dy) in dq:
-            ans += 1
-            isend = True
-            break
         
         if grid[x + dx][y + dy] == 1:
             grid[x + dx][y + dy] = 0
-            dq.append((x + dx, y + dy))
         
         else:
-            dq.append((x + dx, y + dy))
             dq.popleft()
+            if (x + dx, y + dy) in dq:
+                ans += 1
+                isend = True
+                break
+        dq.append((x + dx, y + dy))
 
         x, y = x + dx, y + dy
         ans += 1
-
     
     if isend:
         break
@@ -53,7 +50,8 @@ print(ans)
 # Please write your code here.
 
 '''
+0 1 1 1
 0 0 0 0
 0 0 0 0
-
+0 0 0 0
 '''
