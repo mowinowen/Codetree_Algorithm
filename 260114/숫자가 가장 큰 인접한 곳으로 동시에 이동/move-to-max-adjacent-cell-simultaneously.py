@@ -1,4 +1,5 @@
 import sys
+from collections import defaultdict
 input = sys.stdin.readline
 
 n, m, t = map(int, input().split())
@@ -7,7 +8,7 @@ marbles = [tuple(x - 1 for x in map(int, input().split())) for _ in range(m)]
 dirs = [(1, 0), (-1, 0), (0, -1), (0, 1)]
 
 for _ in range(t):
-    curr_pos = set()
+    curr_pos = defaultdict(int)
     for i in range(m):
         r, c = marbles[i]
         max_val = 0
@@ -18,12 +19,9 @@ for _ in range(t):
                     max_val = grid[r + dx][c + dy]
                     max_x, max_y = r + dx, c + dy
         
-        if (max_x, max_y) in curr_pos:
-            curr_pos.remove((max_x, max_y))
-        else:
-            curr_pos.add((max_x, max_y))
+        curr_pos[(max_x, max_y)] += 1
     
-    marbles = list(curr_pos)
+    marbles = [pos for pos, cnt in curr_pos.items() if cnt == 1]
     m = len(marbles)
 
 print(m)
