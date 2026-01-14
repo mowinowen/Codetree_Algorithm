@@ -5,7 +5,7 @@ input = sys.stdin.readline
 n, m, t = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 marbles = [tuple(x - 1 for x in map(int, input().split())) for _ in range(m)]
-dirs = [(1, 0), (-1, 0), (0, -1), (0, 1)]
+dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 for _ in range(t):
     curr_pos = defaultdict(int)
