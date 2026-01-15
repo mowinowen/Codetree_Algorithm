@@ -15,7 +15,7 @@ for _ in range(T):
         x, y = int(x), int(y)
         marbles_pos[(x, y)] = d
 
-    for _ in range(4 * n):
+    for _ in range(2 * n):
         new_marbles_pos = defaultdict(list)
         for x, y in marbles_pos:
             dx, dy = dirs[marbles_pos[(x, y)]]
