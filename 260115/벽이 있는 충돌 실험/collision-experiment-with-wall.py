@@ -31,8 +31,10 @@ for _ in range(T):
                 else:
                     d = 'U'
 
-                dx, dy = dirs[d]
-            new_marbles_pos[(x + dx, y + dy)].append(d)
+                new_marbles_pos[(x, y)].append(d)
+            
+            else:
+                new_marbles_pos[(x + dx, y + dy)].append(d)
         
         marbles_pos = {}
         for x, y in new_marbles_pos:
