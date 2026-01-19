@@ -44,8 +44,9 @@ for _ in range(t):
                 chunk = grid[x][y]
                 chunk = sorted(chunk, key = lambda x : (-x[1], -x[0]))
                 for i in range(len(chunk), k, -1):
-                    num, v = grid[x][y].pop()
+                    num, v = chunk.pop()
                     del new_marbles[num]
+                grid[x][y] = chunk
 
     marbles = new_marbles
    
@@ -59,3 +60,10 @@ for row in grid:
             cnt += len(marble)
 
 print(cnt)
+
+'''
+0 13 2 0
+0 4 0 0
+0 0 0 0
+0 0 0 0
+'''
