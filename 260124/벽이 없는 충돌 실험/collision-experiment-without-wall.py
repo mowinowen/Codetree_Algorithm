@@ -27,22 +27,25 @@ for _ in range(T):
                 if y1 != y2:
                     continue
                 else:
-                    collisions.append([(x1, y1, w1, num1), (x2, y2, w2, num2), (-x1 + x2) // (dx1 - dx2)])
+                    if (-x1 + x2) // (dx1 - dx2) > 0:
+                        collisions.append([(x1, y1, w1, num1), (x2, y2, w2, num2), (-x1 + x2) // (dx1 - dx2)])
             elif (d1 == 'U' and d2 == 'D') or (d1 == 'D' and d2 == 'U'):
                 if x1 != x2:
                     continue
                 else:
-                    collisions.append([(x1, y1, w1, num1), (x2, y2, w2, num2), (-y1 + y2) // (dy1 - dy2)])
+                    if (-y1 + y2) // (dy1 - dy2) > 0:
+                        collisions.append([(x1, y1, w1, num1), (x2, y2, w2, num2), (-y1 + y2) // (dy1 - dy2)])
             else:
                 if (-x1 + x2) // (dx1 - dx2) == (-y1 + y2) // (dy1 - dy2):
-                    collisions.append([(x1, y1, w1, num1), (x2, y2, w2, num2), (-y1 + y2) // (dy1 - dy2)])
-    
+                    if (-x1 + x2) // (dx1 - dx2) > 0 and (-y1 + y2) // (dy1 - dy2) > 0:
+                        collisions.append([(x1, y1, w1, num1), (x2, y2, w2, num2), (-y1 + y2) // (dy1 - dy2)])
+            
     collisions.sort(key = lambda x : x[2])
 
-    remain = []
+    ans = -1
     for m1, m2, time in collisions:
         if info[m1[3] - 1][-1] and info[m2[3] - 1][-1]:
-            remain.append((m1, m2, time))
+            ans = time
         else:
             continue
         
@@ -58,15 +61,4 @@ for _ in range(T):
             else:
                 info[m2[3] - 1][-1] = False
 
-    if len(remain) == 0:
-        print(-1)
-    else:
-        print(remain[-1][-1])
-
-'''
-0 2 (1, 0)
-2 2 (-1, 0)
-
-0 + 1*k = 2 + (-1)*k
-2 + 0*k = 2 + 
-'''
+    print(ans)
