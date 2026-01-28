@@ -28,6 +28,7 @@ for _ in range(t):
     new_info = []
     for (r, c) in info_dict:
         if len(info_dict[(r, c)]) > 1:
+            info_dict[(r, c)].sort(key = lambda x : x[2])
             w = sum(w for _, w, _ in info_dict[(r, c)])
             d, i = info_dict[(r, c)][-1][0], info_dict[(r, c)][-1][-1]
         else:
