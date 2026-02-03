@@ -16,7 +16,7 @@ for i in range(2, n + 1):
             points.append((x, 1))
             points.append((y, -1))
         
-        points.sort(key = lambda x : x[0])
+        points.sort(key = lambda x : (x[0], -x[1]))
         
         sum_cnt = 0
         isoverlap = False
