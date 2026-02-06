@@ -9,61 +9,23 @@ weight = [list(map(int, input().split())) for _ in range(n)]
 info = []
 for i in range(n):
     for j in range(n - m + 1):
-        vals = []
-        for k in range(j, j + m):
-            vals.append((i, k))
+        seg_weight = weight[i][j : j + m]
+        max_val = 0
 
-        info.append(vals)
+        for num in range(1, m + 1):
+            for comb in combinations(seg_weight, num):
+                if sum(comb) <= c:
+                    max_val = max(sum(k ** 2 for k in comb), max_val)
+        
+        info.append((max_val, i, j))
 
-max_ans = 0
+ans = 0
 for i in range(len(info)):
     for j in range(i + 1, len(info)):
-        if not set(info[i]) & set(info[j]):
-            sum_val = 0
-            ans = 0
-            for x, y in info[i]:
-                sum_val += weight[x][y]
-            
-            if sum_val > c:
-                tmp_max = 0
-                max_comb = []
-                for k in range(1, m):
-                    for comb in combinations(info[i], k):
-                        tmp = 0
-                        for x, y in comb:
-                            tmp += weight[x][y]
+        val1, i1, j1 = info[i]
+        val2, i2, j2 = info[j]
 
-                        if tmp <= c and tmp_max < tmp:
-                            tmp_max = tmp
-                            max_comb = comb
-                for x, y in max_comb:
-                    ans += weight[x][y] ** 2
-            else:
-                for x, y in info[i]:
-                    ans += weight[x][y] ** 2
+        if not (i1 == i2 and j2 - j1 < m):
+            ans = max(ans, val1 + val2)
 
-            sum_val = 0
-            for x, y in info[j]:
-                sum_val += weight[x][y]
-            
-            if sum_val > c:
-                tmp_max = 0
-                max_comb = []
-                for k in range(1, m):
-                    for comb in combinations(info[j], k):
-                        tmp = 0
-                        for x, y in comb:
-                            tmp += weight[x][y]
-
-                        if tmp <= c and tmp_max < tmp:
-                            tmp_max = tmp
-                            max_comb = comb
-                for x, y in max_comb:
-                    ans += weight[x][y] ** 2
-            else:
-                for x, y in info[j]:
-                    ans += weight[x][y] ** 2
-
-            max_ans = max(ans, max_ans)
-
-print(max_ans)            
+print(ans)
