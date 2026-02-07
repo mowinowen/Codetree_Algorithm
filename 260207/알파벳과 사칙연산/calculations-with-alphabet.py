@@ -5,29 +5,24 @@ input = sys.stdin.readline
 expression = input().strip()
 
 # Please write your code here.
-operator = ['+'] + [e for e in expression if e in ['+', '-', '*']]
-num_and_operator = [('+', expression[0])]
-num_dict = {expression[0] : 0}
-
-for i in range(1, len(expression) - 1, 2):
-    num_and_operator.append((expression[i], expression[i + 1]))
-    if not expression[i + 1] in num_dict:
-        num_dict[expression[i + 1]] = 0
+operators = expression[1::2]
+operands = expression[::2]
+set_operands = list(set(operands))
 
 ans = float('-inf')
-for nums in product(range(1, 5), repeat = len(num_dict)):
-    for num, c in zip(nums,num_dict):
-        num_dict[c] = num
+for nums in product(range(1, 5), repeat = len(set_operands)):
+    num_map = dict(zip(set_operands, nums))
 
-    sum_num = 0
-    for op, c in num_and_operator:
+    sum_val = num_map[set_operands[0]]
+    
+    for op, ch in zip(operators, operands[1:]):
         if op == '+':
-            sum_num += num_dict[c]
+            sum_val += num_map[ch]
         elif op == '-':
-            sum_num -= num_dict[c]
+            sum_val -= num_map[ch]
         else:
-            sum_num *= num_dict[c]
+            sum_val *= num_map[ch]
 
-    ans = max(ans, sum_num)
+    ans = max(ans, sum_val)
 
 print(ans)
