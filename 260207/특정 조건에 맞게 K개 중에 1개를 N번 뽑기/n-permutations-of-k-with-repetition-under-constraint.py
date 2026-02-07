@@ -1,14 +1,23 @@
 import sys
-from itertools import product
 
+sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 K, N = map(int, input().split())
 
 # Please write your code here.
-for nums in product(range(1, K + 1), repeat = N):
-    if len(nums) > 2:
-        for i in range(N - 2):
-            if not (nums[i] == nums[i + 1] == nums[i + 2]):
-                print(*nums)
-    else:
-        print(*nums)
+
+result = []
+def dfs(depth):
+    if depth == N:
+        print(*result)
+        return
+    
+    for i in range(1, K + 1):
+        if depth >= 2 and result[-1] == i and result[-2] == i:
+            continue
+
+        result.append(i)
+        dfs(depth + 1)
+        result.pop()
+
+dfs(0)
