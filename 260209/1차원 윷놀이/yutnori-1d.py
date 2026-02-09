@@ -11,18 +11,19 @@ ans = 0
 
 def dfs(cnt):
     global ans
+    score = 0
     if cnt == n:
-        score = 0
-        for i in range(1, k + 1):
-            if cnt_list[i] >= m:
-                score += 1
-        ans = max(score, ans)
         return
     
     for i in range(1, k + 1):
         cnt_list[i] += nums[cnt]
+        if cnt_list[i] >= m:
+            score += 1
+        ans = max(score, ans)
         dfs(cnt + 1)
         cnt_list[i] -= nums[cnt]
+        if cnt_list[i] < m:
+            score -= 1
 
 dfs(0)
 print(ans)
