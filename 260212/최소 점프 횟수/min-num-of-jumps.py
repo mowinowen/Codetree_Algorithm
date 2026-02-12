@@ -5,7 +5,7 @@ n = int(input())
 num = list(map(int, input().split()))
 
 # Please write your code here.
-ans = n - 1
+ans = float('inf')
 cnt = 0
 
 def dfs(idx):
@@ -20,4 +20,4 @@ def dfs(idx):
         cnt -= 1
 
 dfs(0)
-print(-1 if ans == n - 1 else ans)
+print(-1 if ans == float('inf') else ans)
