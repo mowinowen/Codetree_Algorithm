@@ -5,23 +5,19 @@ n = int(input())
 num = list(map(int, input().split()))
 
 # Please write your code here.
-result = [0]
-ans = float('inf')
+ans = n - 1
+cnt = 0
 
-def dfs(cnt):
-    global ans
-    if cnt >= n - 1:
-        ans = min(ans, len(result) - 1)
+def dfs(idx):
+    global ans, cnt
+    if idx >= n - 1:
+        ans = min(ans, cnt)
         return
     
-    for i in range(1, num[cnt] + 1):
-        result.append(cnt + i)
-        dfs(cnt + i)
-        result.pop()
+    for i in range(1, num[idx] + 1):
+        cnt += 1
+        dfs(idx + i)
+        cnt -= 1
 
 dfs(0)
-
-if ans == float('inf'):
-    print(-1)
-else:
-    print(ans)
+print(-1 if ans == n - 1 else ans)
