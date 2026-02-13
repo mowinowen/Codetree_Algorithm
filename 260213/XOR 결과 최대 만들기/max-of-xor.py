@@ -5,22 +5,15 @@ n, m = map(int, input().split())
 A = list(map(int, input().split()))
 
 # Please write your code here.
-result = []
 ans = 0
-def dfs(idx):
+def dfs(idx, curr, cnt):
     global ans
-    xor_val = 0
-    if len(result) == m:
-        xor_val = A[result[0]]
-        for i in range(1, m):
-            xor_val ^= A[result[i]]
-        ans = max(ans, xor_val)
+    if cnt == m:
+        ans = max(ans, curr)
         return
     
     for i in range(idx, n):
-        result.append(i)
-        dfs(i + 1)
-        result.pop()
+        dfs(i + 1, curr ^ A[i], cnt + 1)
 
-dfs(0)
+dfs(0, 0, 0)
 print(ans)
