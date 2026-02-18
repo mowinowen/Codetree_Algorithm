@@ -12,10 +12,14 @@ ans = float('inf')
 def dfs(cnt, curr, start):
     global ans
     if cnt == n - 1:
+        if not A[start][0]:
+            return
         ans = min(ans, curr + A[start][0])
         return
     
     for i in range(2, n + 1):
+        if not A[start][i - 1]:
+            continue
         if not visited[i - 1]:
             visited[i - 1] = 1
             dfs(cnt + 1, curr + A[start][i - 1], i - 1)
