@@ -32,7 +32,7 @@ def dfs(x, y):
             dfs(nx, ny)
 
 max_ans = 0
-max_k = 0
+max_k = 1
 for k in range(1, max_num + 1):
     ans = 0
     visited = [[0] * m for _ in range(n)]
@@ -45,4 +45,4 @@ for k in range(1, max_num + 1):
         max_ans = ans
         max_k = k
 
-print(max_ans, max_k)
+print(max_k, max_ans)
