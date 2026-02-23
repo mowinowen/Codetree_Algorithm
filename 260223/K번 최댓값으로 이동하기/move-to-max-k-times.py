@@ -27,18 +27,9 @@ def bfs(val):
             if can_go(nx, ny, val):
                 visited[nx][ny] = 1
                 q.append((nx, ny))
-                
-                if new_value < grid[nx][ny]:
-                    new_value = grid[nx][ny]
-                    start_x, start_y = nx, ny
-                
-                elif new_value == grid[nx][ny]:
-                    if start_x > nx:
-                        start_x, start_y = nx, ny
-                    
-                    elif start_x == nx:
-                        if start_y > ny:
-                            start_x, start_y = nx, ny
+
+                if (new_value, -start_x, -start_y) < (grid[nx][ny], -nx, -ny):
+                    new_value, start_x, start_y = grid[nx][ny], nx, ny
     
     return start_x + 1, start_y + 1
 
